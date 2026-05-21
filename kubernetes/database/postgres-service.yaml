@@ -2,15 +2,13 @@ apiVersion: v1
 kind: Service
 
 metadata:
-  name: backend-service
+  name: postgres-service
   namespace: devops-project
 
 spec:
   selector:
-    app: backend
+    app: postgres
 
   ports:
-  - port: 80
-    targetPort: 5000
-
-  type: ClusterIP
+    - port: 5432
+      targetPort: 5432

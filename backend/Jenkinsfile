@@ -18,9 +18,11 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh '''
-                docker build -t $ECR_REPO:$IMAGE_TAG ./app/backend
-                '''
+                dir('backend') {
+                    sh '''
+                    docker build -t $ECR_REPO:$IMAGE_TAG .
+                    '''
+                }
             }
         }
 
