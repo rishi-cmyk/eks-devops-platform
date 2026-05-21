@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         AWS_REGION = 'ap-south-1'
-        ECR_REPO = 'eks-devops-backend'
+        ECR_REPO = 'eks-backend'
         IMAGE_TAG = "${BUILD_NUMBER}"
         AWS_ACCOUNT_ID = '013046900819'
     }
