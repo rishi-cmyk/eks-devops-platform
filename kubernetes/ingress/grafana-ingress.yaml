@@ -2,15 +2,15 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 
 metadata:
-  name: devops-ingress
-  namespace: devops-project
+  name: grafana-ingress
+  namespace: monitoring
 
   annotations:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/group.name: devops-shared-alb
-    alb.ingress.kubernetes.io/group.order: "10"
+    alb.ingress.kubernetes.io/group.order: "1"
 
 spec:
   ingressClassName: alb
@@ -19,18 +19,12 @@ spec:
     - http:
         paths:
 
-          - path: /
+          - path: /grafana
             pathType: Prefix
-            backend:
-              service:
-                name: frontend-service
-                port:
-                  number: 80
 
-          - path: /api
-            pathType: Prefix
             backend:
               service:
-                name: backend-service
+                name: monitoring-grafana
+
                 port:
                   number: 80

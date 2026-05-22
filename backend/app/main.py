@@ -29,4 +29,19 @@ def create_employee(
 
 @app.get("/employees")
 def get_employees(db: Session = Depends(get_db)):
-    return crud.get_employees(db)
+    return crud.get_employees(db)   
+ 
+@app.put("/employees/{employee_id}")
+def update_employee(
+    employee_id: int,
+    employee: schemas.EmployeeCreate,
+    db: Session = Depends(get_db)
+):
+    return crud.update_employee(db, employee_id, employee)
+
+@app.delete("/employees/{employee_id}")
+def delete_employee(
+    employee_id: int,
+    db: Session = Depends(get_db)
+):
+    return crud.delete_employee(db, employee_id)
